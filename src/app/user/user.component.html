@@ -1,29 +1,29 @@
 <div class="row">
   <h3>{{ loginSuccessMsg }}</h3>
-  <p>You are a {{ 'valuable' }} to us, as you have been rated
-    <strong>{{ getUserRating() }}</strong>
-    To claim the gift, the user must be rated 5 on 5 by our system. Better luck next time.
+
+  <p class="bg-success" *ngIf="userGiftStatus; else lowrating">You have been rated {{ 'valuable' }} to us, as you have been rated
+    <strong>5 stars</strong>. Claim your gift now.
   </p>
-  <!-- Property Binding -->
-  <h4 [innerText]="userGiftMsg"></h4>
+
+  <ng-template #lowrating>
+    <p class="bg-danger">Seems you have been rated low.</p>
+  </ng-template>
+
+  <!-- <h4 [innerText]="userGiftMsg" [ngStyle]="{color: getStatusTextColor()}"></h4> -->
+  <h4 [innerText]="userGiftMsg" [ngClass]="userGiftClaimed? 'green-text' : 'red-text'"></h4>
 </div>
+
 <div class="row">
-  <div class="col-md-3 form-group">Event Binding (HTML to TS):</div>
+  <div class="col-md-3 form-group">Add a gift of your choice:</div>
   <div class="col-md-9">
-    <!-- HTML to Typescript class -->
-    <input type="text" class="form-control" (input)="onComment($event)" />
+    <input type="text" class="form-control" trim [(ngModel)]="userGiftName"/>
   </div>
-  <div class="col-md-3 form-group">String Interpolation (TS to HTML):</div>
-  <div class="col-md-9">
-    <!-- Typescript class to HTML -->
-    <input type="text" class="form-control" value="{{userComment}}" />
-  </div>
-  <div class="col-md-3 form-group">Two-way Binding:</div>
-  <div class="col-md-9">
-    <!-- Two-way-binding -->
-    <input type="text" class="form-control" [(ngModel)]="userComment" />
-  </div>
+  <div class="col-md-12">
+    <app-gift *ngFor="let gift of gifts; let i = index;" 
+    [ngClass]="i > 0? 'green-text' : 'red-text'"></app-gift>
+  </div> 
 </div>
 <div class="row">
   <button class="btn btn-primary" [disabled]="!userGiftStatus" (click)="onClaimGift();">Claim Gift</button>
+  <button class="btn" (click)="onAddGift();">Add Gift</button>
 </div>

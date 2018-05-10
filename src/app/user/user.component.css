@@ -1,6 +1,21 @@
-h3 {
+h3,h4 {
     color: #4CAF50;
+    width: 100%;
 }
 .row {
     margin-top: 10px;
+}
+p {
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+.green-text {
+    color: green;
+}
+.red-text {
+    color: red;
+}
+button {
+    margin-right: 5px;
 }
