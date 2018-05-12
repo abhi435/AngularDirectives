@@ -14,11 +14,8 @@ export class UserComponent implements OnInit {
   userGiftMsg = 'Gift not claimed yet!';
   userComment = 'Sample Message';
   userGiftName = '';
-
-  gifts: Gift[] = [
-    // { giftName: 'Mr. Nice' },
-    // { giftName: 'Narco' }
-  ];  
+  
+  gifts = [{giftName: 'Toaster'}];
   
   constructor() {
     this.updateUserGiftStatus();
@@ -48,19 +45,15 @@ export class UserComponent implements OnInit {
     return this.userGiftClaimed ? 'green' : 'red'; 
   }
 
-  onComment(event:Event) {
-    console.log(event);
-    this.userComment = (<HTMLInputElement>event.target).value;
-  }
-
   onAddGift() {
     if (this.userGiftName == '') {
       this.userGiftMsg='Gift name cannot be blank';
       return;
     }
-    var gift = new Gift();
-    gift.giftName = 'test';
-    this.gifts.push(gift);
+    
+    this.gifts.push({
+      giftName: this.userGiftName
+    });
   }
   
 }

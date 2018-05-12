@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-gift',
@@ -7,5 +7,5 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class Gift {
-  giftName: string;
+  @Input('giftElement') element: {giftName: string};
 }

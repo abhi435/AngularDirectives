@@ -20,7 +20,7 @@
   </div>
   <div class="col-md-12">
     <app-gift *ngFor="let gift of gifts; let i = index;" 
-    [ngClass]="i > 0? 'green-text' : 'red-text'"></app-gift>
+    [ngClass]="i > 0? 'green-text' : 'red-text'" [giftElement]="gift"></app-gift>
   </div> 
 </div>
 <div class="row">
